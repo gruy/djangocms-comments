@@ -64,3 +64,7 @@ target/
 .ipynb_checkpoints
 /djangocms_comments/static/djangocms_comments/src/libs
 .sass-cache
+
+.project
+.pydevproject
+.settings/

@@ -33,7 +33,7 @@ class SaveComment(FormView):
 
     def form_valid(self, form):
         self.comment = form.save()
-        if settings.EMAIL_NEW_COMMENTS:
+        if settings.EMAIL_NEW_COMMENTS and not self.comment.parent:
             self.email_new_comment()
         return form
 
@@ -62,8 +62,8 @@ class SaveComment(FormView):
 
     def email_new_comment(self):
         to = settings.EMAIL_NEW_COMMENTS_ADDRESSES
-        subject = "New Comment Submitted"
-        body = "The following comment was posted by user {0}:\n\n{1}".format(self.comment.author, self.comment.body)
+        subject = settings.EMAIL_NEW_COMMENTS_SUBJECT
+        body = '{}.\n\n{}:\n\n{}'.format(settings.EMAIL_NEW_COMMENTS_BODY, self.comment.author, self.comment.body)
         send_mail(subject, body, recipient_list=to, from_email=settings.DEFAULT_FROM_EMAIL)
 
 

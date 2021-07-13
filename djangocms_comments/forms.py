@@ -2,7 +2,7 @@ import datetime
 
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
-from django.forms import ModelForm, CharField, EmailField, URLField, IntegerField
+from django.forms import ModelForm, CharField, EmailField, URLField, IntegerField, HiddenInput
 from django.forms.widgets import Textarea
 from django.utils.translation import ugettext_lazy as _
 
@@ -31,6 +31,15 @@ class CommentForm(ModelForm):
     config_id = IntegerField(widget=SignedHiddenInput)
     body = CharField(widget=Textarea(attrs={'rows': settings.COMMENT_TEXTAREA_ROWS}), label=_('Your comment'),
                      min_length=settings.MIN_LENGTH_COMMENT_BODY, max_length=settings.MAX_LENGTH_COMMENT_BODY)
+
+    class Meta:
+        widgets = {
+            'page_id': SignedHiddenInput,
+            'page_type': SignedHiddenInput,
+            'parent': HiddenInput,
+        }
+        model = Comment
+        fields = ('body', 'page_type', 'page_id', 'config_id', 'parent')
 
     def __init__(self, data=None, **kwargs):
         self.request = kwargs.pop('request', None)
@@ -79,6 +88,7 @@ class CommentForm(ModelForm):
         comment = Comment(author=author, user_ip=user_ip, user_agent=user_agent, referrer=referrer, published=published,
                           config=CommentsConfig.objects.get(pk=self.cleaned_data['config_id']),
                           **dict((key, self.cleaned_data[key]) for key in ['body', 'page_id', 'page_type']))
+        comment.parent = self.cleaned_data['parent']
         if is_spam:
             comment.requires_attention = 'spam'
             comment.moderated = 'spam'
@@ -87,14 +97,6 @@ class CommentForm(ModelForm):
         if commit:
             comment.save()
         return comment
-
-    class Meta:
-        widgets = {
-            'page_id': SignedHiddenInput,
-            'page_type': SignedHiddenInput,
-        }
-        model = Comment
-        fields = ('body', 'page_type', 'page_id', 'config_id')
 
 
 class UnregisteredCommentForm(CommentForm):

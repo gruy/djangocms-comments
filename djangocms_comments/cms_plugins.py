@@ -38,8 +38,9 @@ class CommentsPlugin(CMSPluginBase):
     def get_comments(request, obj, ct=None):
         ct = ct or ContentType.objects.get_for_model(obj)
         comments = Comment.objects.filter(page_type=ct, page_id=obj.pk)
-        if not getattr(request.user, 'is_staff', False):
-            comments = comments.filter(published=True).exclude(moderated='spam')
+        #if not getattr(request.user, 'is_staff', False):
+        #    comments = comments.filter(published=True).exclude(moderated='spam')
+        comments = comments.filter(published=True, parent__isnull=True).exclude(moderated='spam')
         return comments
 
 
