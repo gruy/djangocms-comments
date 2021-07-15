@@ -40,7 +40,7 @@ class CommentsPlugin(CMSPluginBase):
         comments = Comment.objects.filter(page_type=ct, page_id=obj.pk)
         #if not getattr(request.user, 'is_staff', False):
         #    comments = comments.filter(published=True).exclude(moderated='spam')
-        comments = comments.filter(published=True, parent__isnull=True).exclude(moderated='spam')
+        comments = comments.filter(published=True, parent__isnull=True).exclude(moderated__in=['spam', 'deleted'])
         return comments
 
 
