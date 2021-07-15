@@ -1,5 +1,7 @@
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import FormView
 
@@ -63,7 +65,21 @@ class SaveComment(FormView):
     def email_new_comment(self):
         to = settings.EMAIL_NEW_COMMENTS_ADDRESSES
         subject = settings.EMAIL_NEW_COMMENTS_SUBJECT
-        body = '{}.\n\n{}:\n\n{}'.format(settings.EMAIL_NEW_COMMENTS_BODY, self.comment.author, self.comment.body)
-        send_mail(subject, body, recipient_list=to, from_email=settings.DEFAULT_FROM_EMAIL)
+        rev = reverse('admin:djangocms_comments_comment_change', kwargs={'object_id': self.comment.id})
+        url = f'{self.request.scheme}://{self.request.get_host()}{rev}'
 
+        context = {
+            'request': self.request,
+            'subject': subject,
+            'body': settings.EMAIL_NEW_COMMENTS_BODY,
+            'author': self.comment.author,
+            'comment': self.comment.body,
+            'url': url,
+        }
 
+        message = render_to_string('djangocms_comments/email_new_comment.txt', context)
+        message_html = render_to_string('djangocms_comments/email_new_comment.html', context)
+
+        email = EmailMultiAlternatives(subject, message, settings.DEFAULT_FROM_EMAIL, to)
+        email.attach_alternative(message_html, 'text/html')
+        email.send(fail_silently=True)
