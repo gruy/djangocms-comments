@@ -60,6 +60,7 @@ class Comment(models.Model):
     author_id = models.PositiveIntegerField()
     author = GenericForeignKey('author_type', 'author_id')
 
+    parent = models.ForeignKey('self', blank=True, null=True, on_delete=models.PROTECT, related_name='children')
     body = models.TextField()
 
     requires_attention = models.CharField(blank='', max_length=16, choices=REQUIRES_ATTENTION)

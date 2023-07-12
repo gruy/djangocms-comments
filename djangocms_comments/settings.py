@@ -1,4 +1,6 @@
 from django.conf import settings
+from django.utils.translation import ugettext_lazy as _
+
 
 COMMENT_PUBLISHED_BY_DEFAULT = True
 SPAM_PROTECTION = {}  # {'default': {'BACKEND': 'djangocms_comments.spam.Akismet', 'TOKEN': '...'}}
@@ -11,13 +13,15 @@ COMMENT_WAIT_SECONDS = 120
 COMMENT_PREVENT_USURP_USERNAME = True
 COMMENTS_ADMIN_WITH_BOOTSTRAP3 = True
 COMMENTS_FORCE_STATIC_SRC = False
-
+COMMENTS_ANSWER_DEEP = 1
 BOOTSTRAP3_COLS = 24
 BOOTSTRAP3_AVATAR_COLS = 3
 BOOTSTRAP3_SELF_ANON_AVATAR_COLS = 5
 
 EMAIL_NEW_COMMENTS = False
 EMAIL_NEW_COMMENTS_ADDRESSES = []
+EMAIL_NEW_COMMENTS_SUBJECT = _('New Comment Submitted')
+EMAIL_NEW_COMMENTS_BODY = _('New Comment Submitted')
 DEFAULT_FROM_EMAIL = ''
 
 # Override my settings usign Django Settings

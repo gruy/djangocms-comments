@@ -1,0 +1,276 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-15 14:18+0300\n"
+"PO-Revision-Date: 2021-07-15 14:20+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+"X-Generator: Poedit 2.4.2\n"
+
+#: admin.py:24
+msgid "Hidden"
+msgstr "Скрытый"
+
+#: admin.py:25 admin.py:65
+msgid "Published"
+msgstr "Обпубликован"
+
+#: admin.py:26 admin.py:67 models.py:15 models.py:21
+msgid "Spam"
+msgstr "Спам"
+
+#: admin.py:51
+msgid "Comment status"
+msgstr "Статус комментария"
+
+#: admin.py:66
+msgid "Hidden (unpublished)"
+msgstr ""
+
+#: admin.py:68
+msgid "Edited by admin"
+msgstr ""
+
+#: admin.py:69 models.py:17
+msgid "Deleted"
+msgstr ""
+
+#: admin.py:95
+msgid "Revised comment"
+msgstr ""
+
+#: admin.py:109
+msgid "Yes (read)"
+msgstr ""
+
+#: admin.py:110
+msgid "No (unread)"
+msgstr ""
+
+#: admin.py:188
+msgid "The comment has been marked as edited."
+msgstr ""
+
+#: admin.py:202
+msgid "The comment has been marked as spam and is no longer visible."
+msgstr ""
+
+#: admin.py:203
+msgid "The comment has been marked as hidden and is no longer visible."
+msgstr ""
+
+#: admin.py:204
+msgid "The comment has been marked as published."
+msgstr ""
+
+#: admin.py:207
+#, python-brace-format
+msgid " It has also been reported as spam to {0}."
+msgstr ""
+
+#: admin.py:212
+msgid "The comment has been moderate and displayed as deleted."
+msgstr ""
+
+#: admin.py:213
+msgid "The comment has been restored."
+msgstr ""
+
+#: admin.py:219
+msgid "Unread"
+msgstr ""
+
+#: admin.py:223
+msgid "Comment"
+msgstr ""
+
+#: admin.py:227
+msgid "Author"
+msgstr ""
+
+#: admin.py:232
+msgid "Page"
+msgstr ""
+
+#: admin.py:237 models.py:23
+msgid "Created"
+msgstr ""
+
+#: admin.py:273
+msgid "1 comment was"
+msgstr ""
+
+#: admin.py:273
+msgid "{} comment were"
+msgstr ""
+
+#: admin.py:280
+#, python-format
+msgid "%s successfully reported and marked as spam."
+msgstr ""
+
+#: admin.py:281
+msgid "Mark and report spam"
+msgstr ""
+
+#: admin.py:288
+#, python-format
+msgid "%s successfully removed usign soft delete."
+msgstr ""
+
+#: admin.py:289
+msgid "Remove usign soft delete"
+msgstr ""
+
+#: admin.py:296
+#, python-format
+msgid "%s successfully published."
+msgstr ""
+
+#: admin.py:297
+msgid "Publish"
+msgstr ""
+
+#: admin.py:303
+#, python-format
+msgid "%s successfully hidden."
+msgstr ""
+
+#: admin.py:304
+msgid "Hide"
+msgstr ""
+
+#: boilerplates/bootstrap3/templates/djangocms_comments/comment.html:15
+#: templates/djangocms_comments/comment.html:15
+msgid "This comment has been deleted and users can't see it."
+msgstr ""
+
+#: boilerplates/bootstrap3/templates/djangocms_comments/comment.html:21
+#: templates/djangocms_comments/comment.html:21
+msgid "This comment is spam and users can't see it."
+msgstr ""
+
+#: boilerplates/bootstrap3/templates/djangocms_comments/comment.html:24
+#: templates/djangocms_comments/comment.html:24
+#, python-format
+msgid ""
+"\n"
+"                        This comment has been %(moderated)s by a "
+"moderator.\n"
+"                        "
+msgstr ""
+
+#: boilerplates/bootstrap3/templates/djangocms_comments/comment.html:29
+#: templates/djangocms_comments/comment.html:29
+msgid "Reason:"
+msgstr ""
+
+#: forms.py:32
+msgid "Your comment"
+msgstr ""
+
+#: forms.py:55
+msgid "You must wait to post a new comment."
+msgstr ""
+
+#: forms.py:67
+msgid "Your comment has too many line breaks."
+msgstr ""
+
+#: forms.py:70
+msgid "Your comment has too many uppercase letters."
+msgstr ""
+
+#: forms.py:103
+msgid "Username"
+msgstr ""
+
+#: forms.py:104
+msgid "Email"
+msgstr ""
+
+#: forms.py:105
+msgid "Website"
+msgstr ""
+
+#: forms.py:118
+msgid "The chosen username belongs to a registered user."
+msgstr ""
+
+#: models.py:16 models.py:22
+msgid "Edited"
+msgstr ""
+
+#: settings.py:23 settings.py:24
+msgid "New Comment Submitted"
+msgstr "Добавлен новый комментарий"
+
+#: templates/djangocms_comments/admin_submit_line.html:3
+msgid "Save"
+msgstr ""
+
+#: templates/djangocms_comments/admin_submit_line.html:7
+msgid "Permanent Delete"
+msgstr "Полное удаление"
+
+#: templates/djangocms_comments/admin_submit_line.html:10
+msgid "Restore comment"
+msgstr "Восстановить комментарий"
+
+#: templates/djangocms_comments/admin_submit_line.html:10
+msgid "Soft delete"
+msgstr "Скрыть комментарий"
+
+#: templates/djangocms_comments/admin_submit_line.html:12
+msgid "Save as new"
+msgstr ""
+
+#: templates/djangocms_comments/admin_submit_line.html:13
+msgid "Save and add another"
+msgstr ""
+
+#: templates/djangocms_comments/admin_submit_line.html:14
+msgid "Save and continue editing"
+msgstr ""
+
+#: templates/djangocms_comments/comment-admin-info.html:9
+#, python-format
+msgid ""
+"\n"
+"                The comment has been marked as spam by %(moderated_by)s\n"
+"                "
+msgstr ""
+
+#: templates/djangocms_comments/comment-admin-info.html:13
+#, python-format
+msgid ""
+"\n"
+"                The comment has been %(moderated)s by %(moderated_by)s\n"
+"                "
+msgstr ""
+
+#: templates/djangocms_comments/comment-admin-info.html:22
+msgid "Written by"
+msgstr ""
+
+#: templates/djangocms_comments/comment-admin-info.html:25
+#: templates/djangocms_comments/comment-admin-info.html:28
+msgid "ago"
+msgstr ""
+
+#: templates/djangocms_comments/comment-admin-info.html:37
+msgid "Referrer"
+msgstr ""

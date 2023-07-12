@@ -1,5 +1,7 @@
-from django.core.mail import send_mail
+from django.core.mail import send_mail, EmailMultiAlternatives
 from django.shortcuts import redirect, render
+from django.template.loader import render_to_string
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.edit import FormView
 
@@ -33,7 +35,7 @@ class SaveComment(FormView):
 
     def form_valid(self, form):
         self.comment = form.save()
-        if settings.EMAIL_NEW_COMMENTS:
+        if settings.EMAIL_NEW_COMMENTS and not self.comment.parent:
             self.email_new_comment()
         return form
 
@@ -62,8 +64,22 @@ class SaveComment(FormView):
 
     def email_new_comment(self):
         to = settings.EMAIL_NEW_COMMENTS_ADDRESSES
-        subject = "New Comment Submitted"
-        body = "The following comment was posted by user {0}:\n\n{1}".format(self.comment.author, self.comment.body)
-        send_mail(subject, body, recipient_list=to, from_email=settings.DEFAULT_FROM_EMAIL)
+        subject = settings.EMAIL_NEW_COMMENTS_SUBJECT
+        rev = reverse('admin:djangocms_comments_comment_change', kwargs={'object_id': self.comment.id})
+        url = f'{self.request.scheme}://{self.request.get_host()}{rev}'
 
+        context = {
+            'request': self.request,
+            'subject': subject,
+            'body': settings.EMAIL_NEW_COMMENTS_BODY,
+            'author': self.comment.author,
+            'comment': self.comment.body,
+            'url': url,
+        }
 
+        message = render_to_string('djangocms_comments/email_new_comment.txt', context)
+        message_html = render_to_string('djangocms_comments/email_new_comment.html', context)
+
+        email = EmailMultiAlternatives(subject, message, settings.DEFAULT_FROM_EMAIL, to)
+        email.attach_alternative(message_html, 'text/html')
+        email.send(fail_silently=True)
