@@ -59,7 +59,7 @@ class RendererMixin(object):
             id_ += '_0'
         return id_
 
-from django.utils.encoding import python_2_unicode_compatible, force_text
+from django.utils.encoding import force_text
 if django.VERSION < (1, 7):
     from django.utils.html import html_safe
 else:
@@ -91,7 +91,6 @@ class ButtonGroupRenderer(Select):
 
 
 @html_safe
-@python_2_unicode_compatible
 class ChoiceButton(SubWidget):
     input_type = None  # Subclasses must define this
 
